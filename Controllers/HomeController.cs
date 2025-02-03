@@ -5,7 +5,7 @@ using SistemaDeGestaoDeTarefas.Repositories.Interfaces;
 
 namespace SistemaDeGestaoDeTarefas.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private readonly ITarefaRepository _tarefaRepository;

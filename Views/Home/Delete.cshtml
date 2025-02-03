@@ -1,49 +1,28 @@
 ﻿@model SistemaDeGestaoDeTarefas.Models.Tarefa
 
-<h1>Excluir Tarefa</h1>
+@{
+    Layout = "_Layout";
+}
 
-<h3>Você tem certeza que deseja excluir esta tarefa?</h3>
+<div class="container mt-5">
+    <h1 class="mb-4">Excluir Tarefa</h1>
+    <h3 class="text-danger">Você tem certeza que deseja excluir esta tarefa?</h3>
 
-<div>
-    <h4>Tarefa</h4>
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            ID
-        </dt>
-        <dd class="col-sm-10">
-            @Model.ID
-        </dd>
-        <dt class="col-sm-2">
-            Título
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Titulo
-        </dd>
-        <dt class="col-sm-2">
-            Descrição
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Descricao
-        </dd>
-        <dt class="col-sm-2">
-            Status
-        </dt>
-        <dd class="col-sm-10">
-            @Model.Status
-        </dd>
-        <dt class="col-sm-2">
-            Data de Criação
-        </dt>
-        <dd class="col-sm-10">
-            @Model.DataCriacao
-        </dd>
-    </dl>
-</div>
-<div>
-    <form asp-action="DeleteConfirmed">
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4 class="card-title">@Model.Titulo</h4>
+            <p class="card-text">
+                <strong>ID:</strong> @Model.ID<br />
+                <strong>Descrição:</strong> @Model.Descricao<br />
+                <strong>Status:</strong> @Model.Status<br />
+                <strong>Data de Criação:</strong> @Model.DataCriacao
+            </p>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post" class="mt-4">
         <input type="hidden" asp-for="ID" />
-        <input type="submit" value="Excluir" class="btn btn-danger" /> |
-        <a href="@Url.Action("Index")" class="btn btn-secondary">Voltar</a>
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a href="@Url.Action("Index")" class="btn btn-secondary ml-2">Voltar</a>
     </form>
 </div>

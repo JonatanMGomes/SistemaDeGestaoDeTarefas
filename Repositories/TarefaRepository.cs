@@ -8,43 +8,42 @@ namespace SistemaDeGestaoDeTarefas.Repositories
     public class TarefaRepository : ITarefaRepository
     {
         protected readonly SGTContext _context;
-        protected readonly DbSet<Tarefa> _dbSet;
 
-        public TarefaRepository(SGTContext context, DbSet<Tarefa> dbSet)
+        public TarefaRepository(SGTContext context)
         {
             _context = context;
-            _dbSet = dbSet;
         }
         public void Create(Tarefa tarefa)
         {
-            _dbSet.Add(tarefa);
+            _context.Tarefas.Add(tarefa);
             _context.SaveChanges();
         }
         public List<Tarefa> GetAll()
         {
-            return _dbSet.AsNoTracking().ToList();
+            return _context.Tarefas.AsNoTracking().ToList();
         }
 
         public Tarefa GetById(int id)
         {
-            return _dbSet.AsNoTracking().First(x => x.ID == id);
+            return _context.Tarefas.AsNoTracking().First(x => x.ID == id);
         }
         public void Update(Tarefa tarefa)
         {
-            var tarefaAAtualizar = _dbSet.Find(tarefa.ID);
+            var tarefaAAtualizar = _context.Tarefas.Find(tarefa.ID);
             if (tarefaAAtualizar != null)
             {
                 tarefaAAtualizar.Titulo = tarefa.Titulo;
                 tarefaAAtualizar.Descricao = tarefa.Descricao;
                 tarefaAAtualizar.Status = tarefa.Status;
 
-                _dbSet.Update(tarefaAAtualizar);
+                _context.Tarefas.Update(tarefaAAtualizar);
+                _context.SaveChanges();
             }
         }
         public void DeleteById(int id)
         {
-            var tarefaARemover = _dbSet.Find(id);
-            _dbSet.Remove(tarefaARemover);
+            var tarefaARemover = _context.Tarefas.Find(id);
+            _context.Tarefas.Remove(tarefaARemover);
             _context.SaveChanges();
         }
     }

@@ -20,7 +20,7 @@ namespace SistemaDeGestaoDeTarefas.Controllers
         [HttpPost("login")]
         public IActionResult Login([FromBody] UserLogin userLogin)
         {
-            if (userLogin.Username != "usuario" || userLogin.Password != "senha")
+            if (userLogin.Username != "Admin" || userLogin.Password != "senha123")
             {
                 return Unauthorized();
             }
