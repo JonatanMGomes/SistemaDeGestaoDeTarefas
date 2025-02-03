@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SistemaDeGestaoDeTarefas.Models;
 using SistemaDeGestaoDeTarefas.Repositories.Interfaces;
 
 namespace SistemaDeGestaoDeTarefas.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ITarefaRepository _tarefaRepository;

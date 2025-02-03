@@ -1,8 +1,31 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model IEnumerable<SistemaDeGestaoDeTarefas.Models.Tarefa>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Lista de Tarefas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tarefa in Model)
+        {
+            <tr>
+                <td>@tarefa.ID</td>
+                <td>@tarefa.Titulo</td>
+                <td>@tarefa.Status</td>
+                <td>
+                    <a href="@Url.Action("Edit", new { id = tarefa.ID })">Editar</a> |
+                    <a href="@Url.Action("Details", new { id = tarefa.ID })">Detalhes</a> |
+                    <a href="@Url.Action("Delete", new { id = tarefa.ID })">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Criar Nova Tarefa</a>
