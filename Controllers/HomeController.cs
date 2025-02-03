@@ -15,9 +15,9 @@ namespace SistemaDeGestaoDeTarefas.Controllers
             _tarefaRepository = tarefaRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string status)
         {
-            var tarefas = _tarefaRepository.GetAll();
+            var tarefas = _tarefaRepository.GetAll(status);
             return View(tarefas);
         }
 

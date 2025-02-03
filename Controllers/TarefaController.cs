@@ -23,9 +23,9 @@ namespace SistemaDeGestaoDeTarefas.Controllers
             }
 
             [HttpGet("Buscar todos")]
-            public IActionResult GetAll()
+            public IActionResult GetAll(string status)
             {
-                var tarefas = _repository.GetAll();
+                var tarefas = _repository.GetAll(status);
                 return Ok(tarefas);
             }
 

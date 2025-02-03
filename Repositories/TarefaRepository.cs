@@ -18,11 +18,13 @@ namespace SistemaDeGestaoDeTarefas.Repositories
             _context.Tarefas.Add(tarefa);
             _context.SaveChanges();
         }
-        public List<Tarefa> GetAll()
+        public List<Tarefa> GetAll(string status)
         {
-            return _context.Tarefas.AsNoTracking().ToList();
+            if (status is not null)
+                return _context.Tarefas.AsNoTracking().Where(x => x.Status == status).ToList();
+            else
+                return _context.Tarefas.AsNoTracking().ToList();
         }
-
         public Tarefa GetById(int id)
         {
             return _context.Tarefas.AsNoTracking().First(x => x.ID == id);
